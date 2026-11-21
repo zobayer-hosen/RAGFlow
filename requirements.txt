@@ -1,0 +1,17 @@
+
+# LangChain v0.3
+langchain==0.3.0
+langchain-openai
+langchain-community
+
+# Vector Database
+chromadb
+
+# Tokenizer
+tiktoken
+
+# PDF Processing
+pypdf
+
+# Environment Variables
+python-dotenv
