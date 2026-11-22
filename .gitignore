@@ -1,15 +1,13 @@
-# Secrets
+# Environment variables
 .env
-
-# Virtual environment
-venv/
-.venv/
-
-# Generated vector DB
-chroma_db/
-chroma_bd/
+.env.*
+!.env.example
 
 # Python
+venv/
 __pycache__/
 *.pyc
-.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
