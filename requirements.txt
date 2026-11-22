@@ -1,17 +1,31 @@
+# LangChain v0.3 (do NOT upgrade to 1.x — see CLAUDE.md §3)
+langchain>=0.3.0,<0.4
+langchain-core>=0.3.0,<0.4
+langchain-community>=0.3.0,<0.4
+langchain-text-splitters>=0.3.0,<0.4
+langchain-openai>=0.3.0,<0.4
 
-# LangChain v0.3
-langchain==0.3.0
-langchain-openai
-langchain-community
-
-# Vector Database
+# Vector database
+langchain-chroma>=0.2.0,<0.3
 chromadb
+
+# Keyword search (hybrid retriever)
+rank_bm25
 
 # Tokenizer
 tiktoken
 
-# PDF Processing
+# PDF processing
 pypdf
 
-# Environment Variables
+# Encoding detection for TXT files (TextLoader autodetect_encoding)
+chardet<6  # 6+ adds a "mime_type" key that langchain-community 0.3 rejects
+
+# Environment variables
 python-dotenv
+
+# Monitoring (optional)
+langsmith
+
+# Tests
+pytest

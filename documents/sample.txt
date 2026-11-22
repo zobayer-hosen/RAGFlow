@@ -1,0 +1,41 @@
+What is RAG?
+
+Retrieval-Augmented Generation (RAG) is a technique that combines a search step with a large
+language model (LLM). Instead of answering only from what the model learned during training,
+a RAG system first retrieves relevant passages from a collection of documents and then gives
+those passages to the LLM as context. The LLM writes its answer using that context.
+
+Why use RAG?
+
+RAG lets an LLM answer questions about private or recent documents that it was never trained
+on. Because the answer is based on retrieved text, the system can show the sources it used,
+which makes answers easier to verify. RAG also reduces hallucination, because the model is
+told to answer only from the provided context and to say it does not know otherwise.
+
+How does a RAG pipeline work?
+
+1. Loading: documents such as PDF and TXT files are loaded from disk.
+2. Splitting: long documents are split into smaller overlapping chunks, for example 1000
+   characters with 200 characters of overlap.
+3. Embedding: each chunk is converted into a vector (a list of numbers) by an embedding model
+   such as OpenAI text-embedding-3-small.
+4. Storing: the vectors are saved in a vector database such as Chroma.
+5. Retrieval: when a user asks a question, the question is embedded and the most similar
+   chunks are found (top-k similarity search).
+6. Generation: the retrieved chunks and the question are sent to the LLM, which writes the
+   final answer.
+
+Retrieval strategies
+
+- Simple similarity search returns the k chunks whose vectors are closest to the question.
+- Hybrid search combines keyword search (BM25) with semantic vector search, which helps with
+  exact names and technical terms.
+- Multi-query retrieval asks the LLM to rewrite the question in several ways and merges the
+  results.
+- Contextual compression asks the LLM to keep only the relevant parts of each retrieved chunk.
+
+Conversational RAG
+
+In a conversation, a follow-up question like "explain that more" depends on earlier messages.
+A conversational RAG system first rewrites the follow-up into a standalone question using the
+chat history, then retrieves documents for that standalone question.
